@@ -5,7 +5,7 @@ import java.util.concurrent.Executors
 /**
  * @author Shigehiro Soejima
  */
-class ItemRepository private constructor(private val itemDao: ItemDao) {
+class ItemRepository(private val itemDao: ItemDao) {
 
     private val ioExecutor = Executors.newSingleThreadExecutor()
 
@@ -15,9 +15,9 @@ class ItemRepository private constructor(private val itemDao: ItemDao) {
         private var instance: ItemRepository? = null
 
         fun getInstance(itemDao: ItemDao) =
-                instance ?: synchronized(this) {
-                    instance ?: ItemRepository(itemDao).also { instance = it }
-                }
+            instance ?: synchronized(this) {
+                instance ?: ItemRepository(itemDao).also { instance = it }
+            }
     }
 
     fun createItem() {
