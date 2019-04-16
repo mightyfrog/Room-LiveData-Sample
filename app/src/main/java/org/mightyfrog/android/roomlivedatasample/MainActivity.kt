@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.mightyfrog.android.roomlivedatasample.data.AppDatabase
+import org.mightyfrog.android.roomlivedatasample.data.Item
 import org.mightyfrog.android.roomlivedatasample.data.ItemRepository
 import org.mightyfrog.android.roomlivedatasample.viewmodels.ItemListViewModel
 import org.mightyfrog.android.roomlivedatasample.viewmodels.ItemListViewModelFactory
@@ -37,12 +38,12 @@ class MainActivity : AppCompatActivity() {
         val itemListViewModel = ViewModelProviders
             .of(this, ItemListViewModelFactory(repository))
             .get(ItemListViewModel::class.java)
-        itemListViewModel.itemList.observe(this, Observer<List<Long>> {
+        itemListViewModel.itemList.observe(this, Observer<List<Item>> {
             if (it.isEmpty()) {
                 (recyclerView.adapter as ItemAdapter).deleteAll()
             } else {
-                it.forEach { time ->
-                    (recyclerView.adapter as ItemAdapter).add(time)
+                it.forEach { item ->
+                    (recyclerView.adapter as ItemAdapter).add(item)
                 }
             }
         })

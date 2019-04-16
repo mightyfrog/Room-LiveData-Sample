@@ -7,4 +7,8 @@ import androidx.room.PrimaryKey
  * @author Shigehiro Soejima
  */
 @Entity(tableName = "items")
-data class Item(@PrimaryKey val created: Long = System.currentTimeMillis())
+data class Item(
+    @PrimaryKey
+    val created: Long = System.currentTimeMillis(),
+    val box: Box = Box()
+)

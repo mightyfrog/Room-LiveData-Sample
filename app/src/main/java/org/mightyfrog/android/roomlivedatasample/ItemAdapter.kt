@@ -5,19 +5,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import org.mightyfrog.android.roomlivedatasample.data.Item
 
 /**
  * @author Shigehiro Soejima
  */
 class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
 
-    private val list: MutableList<Long> = mutableListOf()
+    private val list: MutableList<Item> = mutableListOf()
 
     init {
         setHasStableIds(true)
     }
 
-    override fun getItemId(position: Int) = list[position]
+    override fun getItemId(position: Int) = list[position].created
 
     override fun getItemCount() = list.size
 
@@ -31,9 +32,9 @@ class ItemAdapter : RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
         holder.textView.text = list[position].toString()
     }
 
-    fun add(time: Long) {
-        if (!list.contains(time)) {
-            list.add(0, time)
+    fun add(item: Item) {
+        if (!list.contains(item)) {
+            list.add(0, item)
 //            notifyItemInserted(0)
             notifyDataSetChanged()
         }

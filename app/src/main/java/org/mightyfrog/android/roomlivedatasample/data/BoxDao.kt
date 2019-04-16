@@ -10,14 +10,15 @@ import androidx.room.Query
  * @author Shigehiro Soejima
  */
 @Dao
-interface ItemDao {
+interface BoxDao {
 
     @Query("SELECT * FROM items")
-    fun getAll(): LiveData<List<Item>>
+    fun getAll(): LiveData<List<Box>>
 
     @Query("DELETE FROM items")
     fun deleteAll()
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(item: Item)
+    fun insert(box: Box)
+
 }
